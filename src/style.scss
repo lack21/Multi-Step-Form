@@ -1,0 +1,517 @@
+// lear
+// Multi Step Form
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+
+// Colors
+$marineBlue: hsl(213, 96%, 18%);
+$purplishBlue: hsl(243, 100%, 62%);
+$pastelBlue: hsl(228, 100%, 84%);
+$lightBlue: hsl(206, 94%, 87%);
+$strawberryRed: hsl(354, 84%, 57%);
+$coolGray: hsl(231, 11%, 63%);
+$lightGray: hsl(229, 24%, 87%);
+$magnolia: hsl(217, 100%, 97%);
+$alabaster: hsl(231, 100%, 99%);
+$white: hsl(0, 0%, 100%);
+
+body {
+  background-color: $magnolia;
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+}
+
+// Container
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 1rem;
+  background-color: $white;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  box-shadow: 0 0 1rem $lightGray;
+  overflow: hidden;
+  max-height: 550px;
+
+  .select-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 250px;
+    background-image: url(assets/bg-sidebar-desktop.svg);
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      .step-number {
+        display: grid;
+        place-content: center;
+        width: 35px;
+        height: 35px;
+        border: 1px solid $lightGray;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        color: $lightGray;
+        font-size: 1rem;
+
+        &.active {
+          background-color: $lightBlue;
+          color: $marineBlue;
+        }
+      }
+
+      .step-text {
+        font-weight: 400;
+        color: $pastelBlue;
+        font-size: 0.8rem;
+      }
+
+      .step-name {
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $white;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .form-side {
+    padding: 2rem;
+    margin-right: 2rem;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+
+    .page {
+      width: 450px;
+      height: 450px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 100px;
+      transition: 0.5s;
+      -webkit-transition: 0.5s;
+      -moz-transition: 0.5s;
+      -ms-transition: 0.5s;
+      -o-transition: 0.5s;
+
+      &:last-of-type {
+        justify-content: center;
+        text-align: center;
+
+        img {
+          width: 80px;
+          margin: 0 auto 1.5rem;
+        }
+      }
+    }
+
+    .title {
+      color: $marineBlue;
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .sub-title {
+      margin: -2rem 0 -1rem;
+      color: $coolGray;
+    }
+
+    .text {
+      color: $coolGray;
+      font-size: 0.9rem;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+
+      .next-btn {
+        margin-top: 3rem;
+      }
+
+      label {
+        font-size: 0.9rem;
+        color: $marineBlue;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        padding: 1rem;
+        border: 1px solid $coolGray;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        margin-bottom: 1rem;
+
+        &:focus {
+          outline: 1px solid $marineBlue;
+        }
+      }
+    }
+
+    .plan-option {
+      display: flex;
+      gap: 1rem;
+
+      .option {
+        flex-basis: 100%;
+        height: 160px;
+        padding: 1rem;
+        border: 1px solid $coolGray;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+          outline: 1px solid $marineBlue;
+        }
+
+        .option-name {
+          margin-top: 2.8rem;
+          font-size: 1rem;
+          font-weight: 500;
+          color: $marineBlue;
+          pointer-events: none;
+        }
+
+        img,
+        .text {
+          pointer-events: none;
+        }
+
+        &.active {
+          background-color: $magnolia;
+          outline: 1px solid $purplishBlue;
+        }
+      }
+    }
+
+    .select-option {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $alabaster;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
+      gap: 1rem;
+
+      .select {
+        color: $coolGray;
+        font-size: 0.9rem;
+
+        &.active {
+          color: $marineBlue;
+        }
+      }
+
+      .btn-box {
+        width: 54px;
+        height: 28px;
+        border-radius: 2rem;
+        -webkit-border-radius: 2rem;
+        -moz-border-radius: 2rem;
+        -ms-border-radius: 2rem;
+        -o-border-radius: 2rem;
+        background-color: $marineBlue;
+        display: flex;
+        align-items: center;
+
+        .select-btn {
+          margin-left: 0.35rem;
+          display: inline-block;
+          width: 18px;
+          height: 18px;
+          background-color: $white;
+          border: none;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+          transition: 0.5s;
+          -webkit-transition: 0.5s;
+          -moz-transition: 0.5s;
+          -ms-transition: 0.5s;
+          -o-transition: 0.5s;
+          cursor: pointer;
+
+          &.active {
+            transform: translateX(26px);
+            -webkit-transform: translateX(26px);
+            -moz-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            -o-transform: translateX(26px);
+          }
+        }
+      }
+    }
+
+    .add-ons-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .add-ons-option {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid $lightGray;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+
+        &:hover {
+          outline: 1px solid $marineBlue;
+        }
+
+        .checkmark-btn {
+          width: 20px;
+          height: 20px;
+          border-radius: 3px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          -ms-border-radius: 3px;
+          -o-border-radius: 3px;
+          border: none;
+          background-color: transparent;
+          border: 1px solid $lightGray;
+          cursor: pointer;
+
+          img {
+            pointer-events: none;
+          }
+
+          &.active {
+            background-color: $purplishBlue;
+            border-color: $purplishBlue;
+          }
+        }
+
+        .add-ons-info {
+          margin-left: 2rem;
+
+          .add-ons-name {
+            font-size: 1rem;
+            color: $marineBlue;
+          }
+        }
+
+        .add-ons-cost {
+          font-size: 0.9rem;
+          color: $purplishBlue;
+          font-weight: 400;
+          margin-left: auto;
+        }
+      }
+    }
+
+    .page-btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .summary {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background-color: $magnolia;
+      border-radius: 0.5rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
+
+      .summary-item {
+        display: none;
+        justify-content: space-between;
+        align-items: center;
+
+        .summary-name {
+          color: $coolGray;
+          font-size: 0.9rem;
+        }
+
+        .summary-cost {
+          font-size: 0.9rem;
+          color: $marineBlue;
+        }
+
+        &.active {
+          display: flex !important;
+        }
+      }
+
+      &-main-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $lightGray;
+
+        .summary-main-name,
+        .summary-main-cost {
+          color: $marineBlue;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .total-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1.5rem;
+      margin: -1rem 0 1rem;
+
+      &-name {
+        color: $coolGray;
+        font-size: 0.9rem;
+      }
+
+      &-cost {
+        color: $purplishBlue;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+    }
+
+    .back-btn {
+      border: none;
+      background-color: transparent;
+      font-size: 1.1rem;
+      color: $coolGray;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover {
+        color: $marineBlue;
+      }
+    }
+
+    .next-btn {
+      padding: 0.75rem 1.5rem;
+      background-color: $marineBlue;
+      color: $magnolia;
+      margin-left: auto;
+      border-radius: 0.5rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(150%);
+        -webkit-filter: brightness(150%);
+      }
+
+      &:last-of-type {
+        background-color: $purplishBlue;
+      }
+    }
+  }
+}
+
+// For Smaller Devices
+@media screen and (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    margin: 2rem 0;
+    max-height: 850px;
+
+    .select-side {
+      width: 100%;
+      background-position: bottom;
+    }
+
+    .form-side {
+      margin-right: 0;
+      padding: 1rem;
+
+      .plan-option {
+        flex-direction: column;
+        margin-top: 2rem;
+
+        .option {
+          display: flex;
+          justify-content: space-between;
+          text-align: right;
+
+          .option-name {
+            margin-top: 0;
+          }
+
+          img {
+            width: 40px;
+          }
+        }
+      }
+    }
+
+    .page {
+      max-width: 70vw;
+      height: 100%;
+      margin-top: -0.5rem;
+    }
+
+    .form {
+      margin-top: 1rem;
+    }
+
+    .sub-title {
+      margin: 0.3rem 0;
+
+      &:last-of-type {
+        margin: -0.3rem 0;
+      }
+    }
+
+    .page-btns {
+      margin-top: 1rem;
+    }
+  }
+}
